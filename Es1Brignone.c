@@ -34,5 +34,6 @@ int main()
     }
 
     printf("la classe si e' ammalata in %d giorni", g);
+    return 0;
 
 }
