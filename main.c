@@ -1,28 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX 20
+#define MAX 100
 
-typedef struct {
+typedef struct s_canzone{
 	int  num;
 	char nome[20];
 	char autore[20];
 } canzone;
 
+void Memorizzazione(canzone* Playlist, FILE* ptr);
+
 int main()
 {
     canzone Playlist[MAX];
     FILE *ptr;
-    int i;
-    ptr=fopen ("playlist.csv", "rt");
+    ptr=fopen("playlist.csv", "rt");
     if (ptr){
-            printf("file ok!");
-            for (i=0;i<10;i++){}
-             fgetc(ptr, "%d%s%s\n", &Playlist[i].num, &Playlist[i].nome, &Playlist[i].autore);
-             printf("numero:%d nome:%s voto:%s\n", Playlist[i].num, Playlist[i].nome, Playlist[i].autore);
-            }
+            printf("file ok!\n");
+            Memorizzazione(Playlist,ptr);
             fclose(ptr);
 
     return 0;
 
+    }
 }
+void Memorizzazione(canzone* Playlist, FILE* ptr){
+
+            int i=0,k=0,w,j;
+            char vet[MAX];
+            fscanf(ptr, "%d,", &Playlist[i].num);
+
+            for (i=0;fgets(vet,100,ptr)!=NULL;i++){
+
+                for(w = 0; vet[w]!=','; w++){
+                    Playlist[i].nome[w]=vet[w];
+                    }
+            Playlist[i].nome[w] = '\0';
+            for(j = w+1; vet[j]!='\n'; j++){
+            Playlist[i].autore[k]= vet[j];
+            k++;
+        }
+        printf("%d\n", Playlist[i].num);
+        printf("%s\n", Playlist[i].nome);
+        printf("%s\n", Playlist[i].autore);
+
+        fscanf(ptr, "%d,", &Playlist[i+1].num);
+        k=0;
+
+            }
+
+        }
+
