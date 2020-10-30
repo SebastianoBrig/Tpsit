@@ -32,10 +32,10 @@ int main()
             tc++;
 		}
 	} while(c!=EOF);
-	printf("%d\n", ac);
-	printf("%d\n", gc);
-	printf("%d\n", cc);
-	printf("%d\n", tc);
+	printf("a: %d\n", ac);
+	printf("g: %d\n", gc);
+	printf("c: %d\n", cc);
+	printf("t: %d\n", tc);
 	fclose(ptr);
 	//stampo i contatori;
 
