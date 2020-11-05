@@ -25,15 +25,12 @@ int main()
             printf("file ok!\n");
             Memorizzazione(Playlist,ptr);
             RiproduzioneCasuale(Playlist);
-
-            fclose(ptr);
-
-    return 0;
-
     }
     else {
         printf("errore sul file!");
     }
+fclose(ptr);
+	return 0;
 }
 void Memorizzazione(canzone* Playlist, FILE* ptr){
             int i=0;
