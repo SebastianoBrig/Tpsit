@@ -18,19 +18,31 @@ void RiproduzioneCasuale(canzone* Playlist);
 
 int main()
 {
-    canzone Playlist[MAX];
+    canzone *Playlist;
     FILE *ptr;
-    ptr=fopen("playlist.csv", "rt");
+    FILE *fp;
+    int c,count=0;
+    fp=fopen("playlist.csv", "r");
+    if (fp){
+        for (c = getc(fp); c != EOF; c = getc(fp)){
+        if (c == '\n')
+        count = count + 1;
+        }
+    }
+    fclose(fp);
+    Playlist = (canzone *) malloc(sizeof(canzone) * count);
+    ptr=fopen("playlist.csv", "r");
     if (ptr){
             printf("file ok!\n");
             Memorizzazione(Playlist,ptr);
             RiproduzioneCasuale(Playlist);
+            fclose(ptr);
     }
     else {
         printf("errore sul file!");
     }
-fclose(ptr);
-	return 0;
+    free(Playlist);
+    return 0;
 }
 void Memorizzazione(canzone* Playlist, FILE* ptr){
             int i=0;
