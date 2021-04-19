@@ -13,7 +13,7 @@ void insert(tree_node **tree, tree_node *new_node){
     if (*tree==NULL){
         *tree=new_node;
         (*tree)->left = NULL;
-        (*tree)->left = NULL;
+        (*tree)->right = NULL;
     }
     else {
         if (new_node->key<(*tree)->key){
